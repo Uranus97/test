@@ -1,0 +1,342 @@
+\documentclass[23pt,a4paper,two column]{article}
+\setlength{\columnsep}{0.13\columnwidth}
+%\setlength{\columnseprule}{0.05\columnwidth}
+ 
+\usepackage{geometry}
+\geometry{left=2.5cm,right=2.5cm,top=3.0cm,bottom=2.0cm}
+
+\usepackage{fontspec}
+
+\usepackage{xeCJK}
+
+\usepackage{subfigure}
+
+\usepackage{amssymb}
+
+\usepackage{amsmath}
+
+\usepackage{graphicx}
+
+\usepackage{booktabs}
+
+\usepackage{longtable}
+
+\usepackage{tabularx}
+
+\usepackage{wrapfig}
+
+\usepackage{indentfirst}
+
+\usepackage{float}								%超级好用！浮动排版！
+
+\usepackage{flushend,cuted}
+ 
+\usepackage{caption}
+\captionsetup{font={scriptsize}}						%改变图名字体大小
+
+\usepackage{fancyhdr}
+
+\setlength{\parindent}{2em}
+
+\linespread{1.3}
+
+\begin{document}
+
+\begin{strip}
+	\begin{center}
+	\huge{\bf{阿贝成像原理和空间滤波}}\\
+	 \mbox{}\\ %插入一个空行
+	\normalsize{物理学院\ 刘浚哲\ 1500011370}\\
+	
+	\end{center} 
+	\mbox{}\\ 
+	\rule{\textwidth}{0.13mm}\\ %画一条长横线
+	\textbf {Abstract:}\\
+	\hspace*{\parindent}本实验研究了傅立叶光学中空间频率、空间频谱和空间滤波等概念，了解了阿贝成像原理和透镜孔径对透镜成像分辨率的影响。\\
+	 
+	{\itshape Keywords:}\\
+	\hspace*{\parindent}阿贝成像原理\;\;空间滤波\;\;光学傅立叶变换\;\;频谱面\;\;夫琅禾费衍射\;\;$\theta$调制\;\;卷积现象\\
+	\rule{\textwidth}{0.13mm}\\
+	
+\end{strip}
+
+\thispagestyle{plain}
+
+\pagestyle{fancy}
+\lhead{}
+\rhead{\textbf{\thepage}}
+\chead{\textit{J.Z.Liu\ / 普物实验\uppercase\expandafter{\romannumeral2}实验报告11(2017)5-19}}
+\lfoot{}
+\cfoot{}
+\rfoot{}
+\renewcommand{\headrulewidth}{1pt}
+\renewcommand{\footrulewidth}{0}
+
+\subsection*{1.实验现象记录与数据处理}
+使用散斑原理找到透镜的后焦面, 记录透镜和其后焦面的坐标分别为$141.92cm$和$116.00 cm$，得到透镜的焦距为:
+\begin{equation*}
+	F=137.23-111.37= 25.86\;cm
+\end{equation*}
+
+\subsubsection*{1.1.一维光栅}
+利用倒置的望远镜系统将激光束扩展成具有较大截面的平行光束, 用其照明一维光栅, 用光屏在频谱面接收, 在光屏上出现一排衍射光点。测量$\pm1,\pm2,\pm3$级点的坐标, 计算其空间频率$f_i=\Delta x/(2\lambda F)$,得到表1所示数据。表1中$x_-$表示负级条纹的坐标, $x_+$表示正级条纹的坐标。
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c|c|c}
+	\hline
+	\hline
+	级别 &1&2&3\\
+	\hline
+	$x_-/mm$&-2.0&-4.0&-6.0\\
+	
+	$x_+/mm$&2.0&4.0&6.0\\
+	
+	$\Delta x/mm$&4.0&8.0&12.0\\
+	
+	$f_i/mm^{-1}$&12.2&24.4&36.7\\
+	\hline
+	\hline
+\end{tabular}
+\caption*{表1：测量一维光栅的空间频率}
+\end{table}
+
+可得一维光栅的基频为$12\;mm^{-1}$。
+
+在频谱面上放置不同的光阑, 使得指定的衍射光斑通过。把滤波之后光栅所成的像放大后观察, 在不同的情况下观察到不同的现象。
+
+在不设任何滤波器的情况下，衍射点全部通过，成像情况如图1:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.33]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/1.jpg}
+\caption*{图1：一维光栅衍射点全通成像图}
+\end{figure}
+
+可见在全通情况下，像面表现为边界清晰的纵向条纹。这其实是一维光栅通过透镜所成的像，与一维光栅透光的形状应该相同。经第二次透镜放大后，测量条纹的空间周期，大致为：
+\begin{equation*}
+d_1=2.8\;mm
+\end{equation*}
+
+\newpage
+
+当用挡光片只挡住$0$级衍射点时，成像情况如图2:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.21]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/2.jpg}
+\caption*{图2：一维光栅只挡住0级衍射点成像图}
+\end{figure}
+
+此时可以观察到，相对于全通情形时，纵向条纹变细，且略暗。对比可以看到亮暗条纹发生反转。这是由于0级衍射点相当于直流成分，挡掉0级衍射点，相当于投射的波前函数
+整体向下平移， 原来光强为0的点不再为0, 而成为光强极大点。此时测量条纹的空间周期，大致仍为:
+\begin{equation*}
+d_2=2.8\;mm
+\end{equation*}
+与全通情形一样。\\
+
+当用挡光片挡住除$0$级的以外所有衍射点，只留下0级衍射点时，成像情况如图3:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.37]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/3.jpg}
+\caption*{图3：一维光栅只留下0级衍射点成像图}
+\end{figure}
+
+此时成像区域光强一片均匀，没有条纹。这是由于只通过0级成分，相当于只通过直流成分，不带来任何波动成分，因此光强不产生波动，为一常数。$d_3$不存在。\\
+
+当用挡光片挡住$\pm1$级衍射点时，成像情况如图4:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.23]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/4.jpg}
+\caption*{图4：一维光栅只挡住$\pm1$级衍射点成像图}
+\end{figure}
+
+可以观察到，此时表现为纵向条纹，测量其空间周期，发现为：
+\begin{equation*}
+d_4=1.4\;mm
+\end{equation*)
+大致是全通情形周期的一半。
+
+产生这种情形的原因在于：挡掉基频成分之后, 对像的贡献主要来自于常数项和二次谐频成分。而更高频率的光非常弱, 对于像的贡献非常小。所以在观察的时候会看到呈现出二倍与基频的空间频率。\\
+
+当挡住除$0,\pm1$级以外的所有衍射点时，只露出$0,\pm1$级衍射点，成像情况如图5:
+
+此时可以看见仍表现为纵向条纹，测量其空间周期，为：
+\begin{equation*}
+d_5=2.8\;mm
+\end{equation*}
+与全通情形一致。这是由于只通过$0,\pm1$级衍射点，相当于只通过了常数项和基频项，光强分布呈现出基频项的余弦型分布。
+
+
+\newpage
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.27]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/5.jpg}
+\caption*{图5：一维光栅只留下$0,\pm1$级衍射点成像图}
+\end{figure}
+
+\subsubsection*{1.2.二维光栅}
+
+将二维光栅置于光路中, 在频谱面上可以观察到其二维衍射图样。放大衍射图样, 观察现象并记录其空间周期。
+
+全通情形时，成像情况如图6:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.23]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/6.jpg}
+\caption*{图6：二维光栅全通情形成像图}
+\end{figure}
+
+可见像呈现为二维网格的形状，这是由于二维光栅直接在光屏上成的像, 和二维光栅有相同的结构，只不过经过了放大而已。测量其空间周期，得到：
+\begin{equation*}
+d_x=2.80\;mm\quad d_y=2.80\;mm
+\end{equation*}
+
+\newpage
+
+当在频谱面只留下中心0级衍射点，挡住其余所有的光点时，没有条纹出现，光强为常数。如图7所示：
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.37]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/3.jpg}
+\caption*{图7：二维光栅仅露出中心0级衍射点成像图}
+\end{figure}
+
+这是由于仅透过直流成分，而没有波动项，光强肯定为常数，不产生条纹。\\
+
+当仅使中心的一横排光点透过时，成像情况如图8:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.21]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/7.jpg}
+\caption*{图8：二维光栅横狭缝成像图}
+\end{figure}
+
+此时却出现了纵向条纹，这是由于只通过横向的频谱, 纵向的空间周期性消失，因此表现出纵条纹。测量其空间周期，为：
+\begin{equation*}
+d_x=2.80\;mm
+\end{equation*}
+
+\newpage
+
+当仅使中心的一纵排光点透过时，此时出现的是横向条纹，这是由于只通过纵向的频谱, 而横向的空间周期性消失了，因此表现出横条纹。测量其空间周期，为：
+\begin{equation*}
+d_y=2.80\;mm
+\end{equation*}
+
+当用斜狭缝挡住其他所有衍射点，仅通过一条斜线上的光点时，成像情况如图9:
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.21]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/8.jpg}
+\caption*{图9：二维光栅斜狭缝成像图}
+\end{figure}
+
+此时出现的是斜狭缝，测量其垂直于斜线方向上的空间周期，为：
+\begin{equation*}
+d=1.97\;mm
+\end{equation*}
+
+大致为原来空间周期的$1/\sqrt{2}$倍，这是由于只通过了斜线方向上的频谱, 使这个方向的空间周期性消失, 产生了与其垂直方向的条纹。二维网格在45$^\circ$方向上光点的空间周期恰好是水平或者竖直方向的$\sqrt{2}$倍, 所以这个方向的空间频率也应该是水平或者竖直条纹的$1/\sqrt{2}$倍。
+
+\subsubsection*{1.3.“光”字物屏}
+
+将二维光栅换成“光”字光阑和正交光栅重叠的的物屏，调整物距使其通过透镜直接成像在远处。在频谱面上用光屏接收，观察到其频谱为分立点阵与连续谱的合成。在像面接收，其像边缘清晰，内部有点阵结构。
+
+\newpage
+
+在频谱面上放置$\phi=1mm$的圆形光阑进行滤波，使中心亮点通过，观察像的变化，如图10所示：
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.43]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/10.png}
+\caption*{图10：“光”字物屏经$\phi=1mm$滤波成像图}
+\end{figure}
+
+与全通情形相比，此时字体边缘已经有点模糊了，且原来有的点阵结构已经消失。这是由于光阑滤掉了高频成分, 透过了低频成分, 所以边界会出现模糊的现象。透过的光斑是光栅的常数部分, 这部分是无法形成相位差的, 所以在像面上我们看不到"光"字内部有任何点阵结构。\\
+
+在频谱面上放置$\phi=0.3mm$的圆形光阑进行滤波，使中心亮点通过，观察像的变化，如图11所示：
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.33]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/11.png}
+\caption*{图11：“光”字物屏经$\phi=0.3mm$滤波成像图}
+\end{figure}
+
+与$\phi=1mm$滤波情形相比，此时字体边缘已经非常模糊了，且原来有的点阵结构也已经消失。这是由于滤波光阑更小使得透过的频率范围更加狭窄, 只有极低频率的光透过, 光强变化更加缓慢, 边缘更加模糊。
+
+若想要使网格消失, 只需要不使基频及以上频率成分通过即可。基频成分为$f_0=12mm^{-1}$, 在频谱面上的坐标为：
+\begin{equation*}
+x' = \lambda F \cdot f_0=1.9\;mm
+\end{equation*}
+所以滤波器光阑半径必须小于1.9mm, 其孔径必须小于3.8mm。
+
+使得字迹消失需要使低频成分通过, 滤掉高频成分。估计通过的频率上限为字迹宽度$W=0.5mm$的倒数, 则其在频谱面上的坐标为：
+\begin{equation*}
+x' = \frac{\lambda F}{W}=0.31\;mm
+\end{equation*}
+故滤波器的半径必须小于0.31mm, 其直径必须小于0.62mm。
+	
+在实际的实验过程中, 使用孔径为0.3mm的滤波器之后, 网格消失, 字迹已经非常模糊。预计使用更小孔径的时候字迹就会完全无法辨识。\\
+
+移动频谱面上的光阑, 使得0级中心衍射点上方的$+1$级衍射点通过孔径为0.3mm的光阑, 观察到像的边界非常模糊，没有出现点阵结构，且亮度较原来更暗。
+
+根据卷积定理，物的频谱为"光"字的连续谱和二维光栅离散谱的卷积，所以频谱面上每一个光点周围均包含了"光"字连续谱的所有低频信息。所以仅使$+1$级衍射点通过也能成一边界模糊的"光"字像。但由于二维光栅基频成分比0级成分弱，所以所成的像较暗。而又由于只通过了$+1$级衍射, 却并没有通过$-1$级衍射，所以光强不会有明显的纵向按基频变化的成分，内部不会有点阵结构出现。
+	
+\subsubsection*{1.4.“十”字物屏}
+
+把十字物屏置于光路，在频谱面接收，可看到有横向，纵向两条两线和连续谱。在像面接收, 观察到边界清晰的十字像。如图12所示：\\
+	
+用光阑挡住频谱的中心成分，可以看到所成的像变得中心发暗而边缘发亮。这是因为内部主要是低频成分，边界主要是高频成分，光阑滤掉了低频成分的光，留下了高频成分的光，所以像会出现中心暗，边缘亮的现象。
+
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.23]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/9.jpg}
+\caption*{图12：“十”字物屏成像图}
+\end{figure}
+	
+\subsubsection*{1.5.$\theta$调制实验}
+
+$\theta$调制是以不同取向的光栅调制物面图像上的不同部位，经空间滤波后，像面上各相应部位呈现不同的颜色。实验光路如图13所示：
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.1]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/12.jpeg}
+\caption*{图13：$\theta$调制实验光路}
+\end{figure}
+
+图中S为光源, $L_1$, $L_2$为凸透镜, $P_1$为由薄膜光栅制成的样品作为物屏, $P_2$为S通过$L_1$成像的像面, 同时也是物屏的频谱面。在频谱面控制不同频率的光透过, 通过$L_2$成像于平面$P_3$上。
+	
+实验中作为物的样品由薄膜光栅组成。样品上的花、叶、盆等各部位光栅具有不同取向，相间角度为$60^\circ$。如图14所示：
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.1]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/13.jpeg}
+\caption*{图14：$\theta$调制实验中的物面、频谱面与像面}
+\end{figure}
+
+实验中可以观察到在纸面上出现了三种颜色的衍射光点。用电烙铁在每种颜色出现的地方烫一个小洞, 可以看到$P_3$上出现了一个完整的红花绿叶黄盆的像。虽然只有一个小孔透光, 但是此时每个衍射点都含有像的完整信息, 自然就可以在$P_3$上完整成像。所成像如图15所示：
+\begin{figure}[H]
+\centering
+\includegraphics[scale=0.23]{/Users/macbookair/Desktop/Daily/实验/普物实验/普物实验（下）/空间滤波/14.jpg}
+\caption*{图15：$\theta$调制实验成像图}
+\end{figure}
+
+\subsubsection*{1.6.观察卷积现象}
+
+用激光束分别照射20mm$^{-1}$和200mm$^{-1}$的两个正交光栅, 观察各自频谱。可以观察到20mm$^{-1}$光栅衍射所成的衍射点比较密集，而200mm$^{-1}$的光栅比较稀疏。
+	
+将二者重叠, 观察到频谱为20mm$^{-1}$和200mm$^{-1}$频谱之合成：即在200mm$^{-1}$光栅各分布稀疏的衍射点周围，还分布着一圈密集的20mm$^{-1}$光栅的衍射点。
+
+转动20mm$^{-1}$的光栅，可以看到各密集的20mm$^{-1}$的频谱衍射点随之转动，但200mm$^{-1}$的光栅分布稀疏的衍射点并不随之转动；200mm$^{-1}$的光栅转动的时候，其对应的稀疏的频谱衍射点随之转动，但在这些点周围的20mm$^{-1}$的光栅分布密集的衍射点并不随之转动。可见这些衍射点的运动是独立的，并不随着另外一块光栅的运动而进行运动。
+
+\newpage
+
+
+
+\subsection*{2.收获与感想}
+
+本次实验非常的有意思，从直观上展现了傅立叶光学的精髓。我们可以从频谱面上清晰地看到各个衍射点，并且遮住每一个衍射点都可以看到在像面上有相应的反馈。本次实验很好地将复杂、抽象的光学理论形象地演示了出来。从本次实验我们清晰地感受到光学的美，对于我们理解光学理论有非常大的帮助。
+
+\rule{\columnwidth}{0.13mm}\\
+
+\noindent\textbf{References:}\\
+\scriptsize {[1] 吕斯骅，张朝晖，新编基础物理实验(第二版)(北京：高等教育出版社)第403-409页}\\
+
+\begin{flushright}
+\large\textbf{(指导老师：杨景)}
+\end{flushright}
+
+\raggedend
+
+\end{document}
